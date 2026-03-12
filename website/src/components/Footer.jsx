@@ -8,9 +8,11 @@ export default function Footer() {
         </div>
         <div className="footer-col">
           <h4>Links</h4>
-          <a href="https://pypi.org/project/vyntri/" target="_blank" rel="noopener noreferrer">PyPI Package</a>
-          <a href="https://github.com/AreebShahid07/vyntri" target="_blank" rel="noopener noreferrer">GitHub Repository</a>
-          <a href="https://github.com/AreebShahid07/vyntri/issues" target="_blank" rel="noopener noreferrer">Report an Issue</a>
+          <ul>
+            <li><a href="https://pypi.org/project/vyntri/" target="_blank" rel="noopener noreferrer">PyPI Package</a></li>
+            <li><a href="https://github.com/AreebShahid07/vyntri" target="_blank" rel="noopener noreferrer">GitHub Repository</a></li>
+            <li><a href="https://github.com/AreebShahid07/vyntri/issues" target="_blank" rel="noopener noreferrer">Report an Issue</a></li>
+          </ul>
         </div>
         <div className="footer-col">
           <h4>Install</h4>

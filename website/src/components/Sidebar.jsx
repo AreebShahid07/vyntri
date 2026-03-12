@@ -1,6 +1,10 @@
-import { NavLink, Link } from 'react-router-dom';
+import { NavLink, Link, useLocation } from 'react-router-dom';
+import { useState, useEffect } from 'react';
 
 export default function Sidebar() {
+    const { pathname } = useLocation();
+    const [activeSection, setActiveSection] = useState('');
+
     const docLinks = [
         {
             to: '/getting-started', label: 'Getting Started', sections: [
@@ -41,6 +45,35 @@ export default function Sidebar() {
         }
     ];
 
+    // Gather section IDs for the current page
+    const currentPage = docLinks.find(l => l.to === pathname);
+    const currentSectionIds = currentPage ? currentPage.sections.map(s => s.id) : [];
+
+    useEffect(() => {
+        setActiveSection('');
+        if (currentSectionIds.length === 0) return;
+
+        const observer = new IntersectionObserver(
+            (entries) => {
+                // Find the topmost visible section
+                const visible = entries
+                    .filter(e => e.isIntersecting)
+                    .sort((a, b) => a.boundingClientRect.top - b.boundingClientRect.top);
+                if (visible.length > 0) {
+                    setActiveSection(visible[0].target.id);
+                }
+            },
+            { rootMargin: '-80px 0px -60% 0px', threshold: 0 }
+        );
+
+        const elements = currentSectionIds
+            .map(id => document.getElementById(id))
+            .filter(Boolean);
+        elements.forEach(el => observer.observe(el));
+
+        return () => observer.disconnect();
+    }, [pathname]);
+
     return (
         <div className="doc-sidebar">
             <div className="sidebar-content">
@@ -58,7 +91,10 @@ export default function Sidebar() {
                             <ul className="sidebar-sections">
                                 {link.sections.map(section => (
                                     <li key={section.id}>
-                                        <Link to={`${link.to}#${section.id}`} className="section-link">
+                                        <Link
+                                            to={`${link.to}#${section.id}`}
+                                            className={`section-link${activeSection === section.id && pathname === link.to ? ' active' : ''}`}
+                                        >
                                             {section.label}
                                         </Link>
                                     </li>
