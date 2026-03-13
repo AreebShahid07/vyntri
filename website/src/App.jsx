@@ -9,6 +9,8 @@ import Solvers from './pages/Solvers'
 import CliReference from './pages/CliReference'
 import DocLayout from './components/DocLayout'
 import './App.css'
+import { Analytics } from '@vercel/analytics/react';
+import { SpeedInsights } from '@vercel/speed-insights/react';
 
 function ScrollToTop() {
   const { pathname } = useLocation()
@@ -35,6 +37,8 @@ function App() {
         </main>
         <Footer />
       </div>
+      <Analytics />
+      <SpeedInsights />
     </Router>
   )
 }
