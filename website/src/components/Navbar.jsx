@@ -1,9 +1,13 @@
 import { Link, useLocation } from 'react-router-dom'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 
 export default function Navbar() {
   const location = useLocation()
   const [menuOpen, setMenuOpen] = useState(false)
+
+  useEffect(() => {
+    setMenuOpen(false)
+  }, [location.pathname, location.hash])
 
   const links = [
     { to: '/', label: 'Home' },
@@ -27,11 +31,13 @@ export default function Navbar() {
           className="menu-toggle"
           onClick={() => setMenuOpen(!menuOpen)}
           aria-label="Toggle menu"
+          aria-expanded={menuOpen}
+          aria-controls="site-nav-links"
         >
           <span className={`hamburger ${menuOpen ? 'open' : ''}`} />
         </button>
 
-        <div className={`navbar-links ${menuOpen ? 'active' : ''}`}>
+        <div id="site-nav-links" className={`navbar-links ${menuOpen ? 'active' : ''}`}>
           {links.map(link => (
             <Link
               key={link.to}

@@ -4,6 +4,7 @@ import { useState, useEffect } from 'react';
 export default function Sidebar() {
     const { pathname } = useLocation();
     const [activeSection, setActiveSection] = useState('');
+    const [isMobileOpen, setIsMobileOpen] = useState(false);
 
     const docLinks = [
         {
@@ -74,13 +75,27 @@ export default function Sidebar() {
         return () => observer.disconnect();
     }, [pathname]);
 
+    useEffect(() => {
+        setIsMobileOpen(false);
+    }, [pathname, activeSection]);
+
     return (
         <div className="doc-sidebar">
             <div className="sidebar-content">
                 <h3 className="sidebar-title">Documentation</h3>
-                <nav className="sidebar-nav">
+                <button
+                    type="button"
+                    className="sidebar-toggle"
+                    aria-expanded={isMobileOpen}
+                    aria-controls="docs-sidebar-nav"
+                    onClick={() => setIsMobileOpen((open) => !open)}
+                >
+                    <span>Documentation Navigation</span>
+                    <span className={`sidebar-toggle-icon ${isMobileOpen ? 'open' : ''}`}>▾</span>
+                </button>
+                <nav id="docs-sidebar-nav" className={`sidebar-nav ${isMobileOpen ? 'open' : ''}`}>
                     {docLinks.map((link) => (
-                        <div key={link.to} className="sidebar-group">
+                        <div key={link.to} className={`sidebar-group ${pathname === link.to ? 'active-group' : ''}`}>
                             <NavLink
                                 to={link.to}
                                 className={({ isActive }) => `sidebar-link ${isActive ? 'active' : ''}`}

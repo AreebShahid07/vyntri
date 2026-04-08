@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630" role="img" aria-labelledby="title desc">
+  <title id="title">Vyntri</title>
+  <desc id="desc">Training-less vision intelligence for edge AI.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#0f172a" />
+      <stop offset="100%" stop-color="#1e3a8a" />
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="630" fill="url(#bg)" />
+  <g fill="#e2e8f0" opacity="0.08">
+    <circle cx="180" cy="160" r="140" />
+    <circle cx="1040" cy="540" r="220" />
+    <circle cx="820" cy="120" r="90" />
+  </g>
+  <text x="96" y="290" fill="#f8fafc" font-size="88" font-family="Inter, Segoe UI, Arial, sans-serif" font-weight="800">Vyntri</text>
+  <text x="96" y="360" fill="#bfdbfe" font-size="38" font-family="Inter, Segoe UI, Arial, sans-serif" font-weight="500">Training-less Vision Intelligence</text>
+  <text x="96" y="418" fill="#cbd5e1" font-size="30" font-family="Inter, Segoe UI, Arial, sans-serif">Edge AI · CPU-first · Real-time pipelines</text>
+  <text x="96" y="540" fill="#93c5fd" font-size="28" font-family="Inter, Segoe UI, Arial, sans-serif">www.vyntri.dev</text>
+</svg>
